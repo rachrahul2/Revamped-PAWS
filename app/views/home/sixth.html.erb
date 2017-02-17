@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reponsive HTML Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="http://www.htmlpreviews.com/cloud/travel/hosphere6/css/bootstrap.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Podkova:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<link href="http://www.htmlpreviews.com/cloud/travel/hosphere6/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header class="main__header">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation"> 
+
+      <div class="navbar-header">
+        <h1 class="navbar-brand"><a href="#">tourism</a></h1>
+        <a href="#" class="submenu">Menus</a> </div>
+      <div class="menuBar">
+        <ul class="menu">
+          <li class="active"><a href="/home/index">Home</a></li>
+          <%  if session[:user_present] == "false" %>
+          <li><a href="/home/login">Login</a></li>
+          <li><a href="/home/signup">Signup</a></li>
+          <% else %>
+          <li><a href="/home/logout">Logout</a></li>
+          <% end %>
+          <li><a href="/home/places">places</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<section class="main__middle__container">
+  <div><br><br><br><br><br><br></div>
+  <div class="row titles text-center">
+    <h2>Vienna</h2>
+    <div class="separator"><img src="http://www.htmlpreviews.com/cloud/travel/hosphere6/images/sep.png" alt="sep"></div>
+  </div>
+  <div class="row grey-info-block text-center">
+    <div class="container">
+      <div>
+        <img style="width:100%; height:auto;"src="<%= image_path('6.jpg') %>" alt="pic" class="img-rounded img-responsive" id="picture"><br><br>
+        <p style="text-align:justify;">BVienna's Ringstrasse is the most beautiful boulevard in the world. Nowhere else can you find such a dense concentration of so many representative buildings, palaces and parks.  <br><br>All of these splendid buildings still have their full radiance today. An elegant promenade for the wealthy and beautiful has become a modern boulevard for everyone.  And the section of the Ring along the Danube Canal has become a hotspot: an urban bar scene and modern architecture attract a primarily young audience.</p>
+        <% if @first="true" and session[:user_present]=="true"%>
+        <form action="/home/like" method="post">
+          <input type="hidden" name="sixth" value="true">
+          <input class="btn btn-primary" type="submit" name="1" value="Liked place">
+      </form>
+      <%  else %>
+        <form action="/home/like" method="post">
+          <input type="hidden" name="sixth" value="false">
+          <input class="btn btn-primary" type="submit" name="2" value="Like this place">
+      </form>
+      <% end %>
+      </div>
+    </div>
+  </div> 
+</section>
+<p class="text-center copyright">&copy; Copyright ABC Company. All Rights Reserved.</p>
+<script type="text/javascript" src="http://www.htmlpreviews.com/cloud/travel/hosphere6/js/jquery.min.js"></script> 
+<script src="http://www.htmlpreviews.com/cloud/travel/hosphere6/js/bootstrap.min.js"></script>  
+<script type="text/javascript">
+$( "a.submenu" ).click(function() {
+$( ".menuBar" ).slideToggle( "normal", function() {
+});
+});
+$( "ul li.dropdown a" ).click(function() {
+$( "ul li.dropdown ul" ).slideToggle( "normal", function() {
+});
+$('ul li.dropdown').toggleClass('current');
+});
+</script>
+</body>
+</html>
